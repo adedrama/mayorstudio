@@ -41,7 +41,7 @@
 
     <div class="logo">
       <i class="fa-solid fa-store"></i>
-      Mi Tienda
+      Mayor Studioa
     </div>
 
     <nav>
