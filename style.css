@@ -35,12 +35,8 @@ body{
 
 .logo img{
   height:55px;
-  transition:0.3s;
-  filter:drop-shadow(0 5px 15px rgba(0,0,0,0.15));
-}
-
-.logo img:hover{
-  transform:scale(1.05);
+  width:auto;
+  object-fit:contain;
 }
 
 nav{
