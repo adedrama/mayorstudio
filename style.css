@@ -39,6 +39,17 @@ body{
   object-fit:contain;
 }
 
+.puta{
+  font-size:26px;
+  font-weight:700;
+  color:#111;
+}
+
+.puta i{
+  color:#5a67ff;
+}
+
+
 nav{
   display:flex;
   gap:25px;
