@@ -39,7 +39,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
 
-<div class="logo">
+  <div class="logo">
   <img src="assets/logo.png" alt="Logo">
 </div>
 
