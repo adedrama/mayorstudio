@@ -45,7 +45,7 @@
 </div>
 
   <div class="puta">
-      <i class=">  </i>
+    
         MAYOR STUDIO
       
    </div>
