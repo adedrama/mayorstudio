@@ -41,8 +41,13 @@
 
   <div class="logo">
   <img src="assets/logo.png" alt="Logo">
-       MAYOR STUDIO
+       
 </div>
+
+  <div class="puta">
+      <i class="MAYOR STUDIOe"></i>
+      
+    </div>
 
     <nav>
       <a href="#empresarial">Empresarial</a>
