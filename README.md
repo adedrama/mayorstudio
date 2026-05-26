@@ -40,6 +40,7 @@
   <header class="navbar">
 
   <div class="logo">
+    MAYOR STUDIO
   <img src="assets/logo.png" alt="Logo">
 </div>
 
