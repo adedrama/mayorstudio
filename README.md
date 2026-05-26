@@ -109,7 +109,7 @@
   <!-- WHATSAPP -->
   <a
     class="whatsapp-button"
-    href="https://wa.me/5491111111111"
+    href="https://wa.me/5491169988927"
     target="_blank"
   >
     <i class="fa-brands fa-whatsapp"></i>
@@ -134,7 +134,7 @@
       <div>
         <h3>Contacto</h3>
 
-        <p>+54 9 11 1111 1111</p>
+        <p>+54 9 11 6998 8927</p>
         <p>empresa@email.com</p>
       </div>
 
