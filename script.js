@@ -1,79 +1,91 @@
-// =====================
-// BANNERS
-// =====================
+// ==========================
+// HERO SLIDER
+// ==========================
 
-const banners = [
-  "assets/banners/banner1.jpg",
-  "assets/banners/banner2.jpg",
-  "assets/banners/banner3.jpg",
-  "assets/banners/banner4.jpg"
+const heroImages = [
+
+  "https://picsum.photos/1600/700?random=1",
+  "https://picsum.photos/1600/700?random=2",
+  "https://picsum.photos/1600/700?random=3",
+  "https://picsum.photos/1600/700?random=4"
+
 ];
 
-let bannerIndex = 0;
+let heroIndex = 0;
 
 setInterval(() => {
-  bannerIndex++;
 
-  if(bannerIndex >= banners.length){
-    bannerIndex = 0;
+  heroIndex++;
+
+  if(heroIndex >= heroImages.length){
+    heroIndex = 0;
   }
 
-  document.getElementById("bannerImage").src = banners[bannerIndex];
+  document.getElementById("heroImage").src =
+    heroImages[heroIndex];
 
-}, 3000);
+}, 4000);
 
 
-// =====================
+// ==========================
 // PRODUCTOS
-// =====================
+// ==========================
 
 const productos = [
 
   {
-    categoria: "empresarial",
-    nombre: "Producto Empresarial",
-    descripcion: "Descripción del producto",
-    imagenes: [
-      "assets/productos/empresarial1-1.jpg",
-      "assets/productos/empresarial1-2.jpg",
-      "assets/productos/empresarial1-3.jpg",
-      "assets/productos/empresarial1-4.jpg"
+    categoria:"empresarial",
+    nombre:"Kit Empresarial Premium",
+    descripcion:
+      "Diseño corporativo moderno para empresas.",
+
+    imagenes:[
+      "https://picsum.photos/500/500?random=11",
+      "https://picsum.photos/500/500?random=12",
+      "https://picsum.photos/500/500?random=13",
+      "https://picsum.photos/500/500?random=14"
     ]
   },
 
   {
-    categoria: "souvenirs",
-    nombre: "Souvenir Argentina",
-    descripcion: "Descripción souvenir",
-    imagenes: [
-      "assets/productos/souvenir1-1.jpg",
-      "assets/productos/souvenir1-2.jpg",
-      "assets/productos/souvenir1-3.jpg",
-      "assets/productos/souvenir1-4.jpg"
+    categoria:"souvenirs",
+    nombre:"Souvenir Buenos Aires",
+    descripcion:
+      "Recuerdo premium inspirado en Argentina.",
+
+    imagenes:[
+      "https://picsum.photos/500/500?random=21",
+      "https://picsum.photos/500/500?random=22",
+      "https://picsum.photos/500/500?random=23",
+      "https://picsum.photos/500/500?random=24"
     ]
   },
 
   {
-    categoria: "randoms",
-    nombre: "Producto Random",
-    descripcion: "Descripción random",
-    imagenes: [
-      "assets/productos/random1-1.jpg",
-      "assets/productos/random1-2.jpg",
-      "assets/productos/random1-3.jpg",
-      "assets/productos/random1-4.jpg"
+    categoria:"randoms",
+    nombre:"Caja Random",
+    descripcion:
+      "Productos variados y exclusivos.",
+
+    imagenes:[
+      "https://picsum.photos/500/500?random=31",
+      "https://picsum.photos/500/500?random=32",
+      "https://picsum.photos/500/500?random=33",
+      "https://picsum.photos/500/500?random=34"
     ]
   },
 
   {
-    categoria: "anime",
-    nombre: "Producto Anime",
-    descripcion: "Descripción anime",
-    imagenes: [
-      "assets/productos/anime1-1.jpg",
-      "assets/productos/anime1-2.jpg",
-      "assets/productos/anime1-3.jpg",
-      "assets/productos/anime1-4.jpg"
+    categoria:"anime",
+    nombre:"Figura Anime",
+    descripcion:
+      "Colección anime edición especial.",
+
+    imagenes:[
+      "https://picsum.photos/500/500?random=41",
+      "https://picsum.photos/500/500?random=42",
+      "https://picsum.photos/500/500?random=43",
+      "https://picsum.photos/500/500?random=44"
     ]
   }
 
@@ -86,72 +98,107 @@ const categorias = [
   "anime"
 ];
 
-const container = document.getElementById("productos-container");
+const container =
+  document.getElementById("productos-container");
 
 categorias.forEach(categoria => {
 
   const section = document.createElement("section");
 
-  section.classList.add("categoria");
+  section.className = "category";
 
   section.id = categoria;
 
   section.innerHTML = `
-    <h2>${categoria.toUpperCase()}</h2>
-    <div class="productos-grid"></div>
+    <h2 class="category-title">
+      ${categoria.toUpperCase()}
+    </h2>
+
+    <div class="products-grid"></div>
   `;
 
   container.appendChild(section);
 
-  const grid = section.querySelector(".productos-grid");
+  const grid =
+    section.querySelector(".products-grid");
+
 
   productos
     .filter(p => p.categoria === categoria)
     .forEach(producto => {
 
-      const div = document.createElement("div");
+      const card = document.createElement("div");
 
-      div.classList.add("producto");
+      card.className = "product-card";
 
-      div.innerHTML = `
-        <img src="${producto.imagenes[0]}" class="producto-img">
+      card.innerHTML = `
 
-        <h3>${producto.nombre}</h3>
+        <div class="product-image">
 
-        <p>${producto.descripcion}</p>
+          <img
+            src="${producto.imagenes[0]}"
+            class="product-slider"
+          >
 
-        <input type="number" min="1" value="1">
+        </div>
 
-        <button>Agregar al carrito</button>
+        <div class="product-content">
+
+          <h3>${producto.nombre}</h3>
+
+          <p>${producto.descripcion}</p>
+
+          <div class="product-controls">
+
+            <input
+              type="number"
+              value="1"
+              min="1"
+            >
+
+            <button>
+              Agregar
+            </button>
+
+          </div>
+
+        </div>
+
       `;
 
-      grid.appendChild(div);
+      grid.appendChild(card);
 
-      // CAMBIO AUTOMATICO IMAGENES
-      let imgIndex = 0;
+      // SLIDER IMAGENES
+      let index = 0;
 
-      const img = div.querySelector(".producto-img");
+      const image =
+        card.querySelector(".product-slider");
 
       setInterval(() => {
 
-        imgIndex++;
+        index++;
 
-        if(imgIndex >= producto.imagenes.length){
-          imgIndex = 0;
+        if(index >= producto.imagenes.length){
+          index = 0;
         }
 
-        img.src = producto.imagenes[imgIndex];
+        image.src =
+          producto.imagenes[index];
 
-      }, 2000);
+      }, 2500);
 
-      // CARRITO
-      const button = div.querySelector("button");
 
-      button.addEventListener("click", () => {
+      // AGREGAR AL CARRITO
+      card.querySelector("button")
+      .addEventListener("click", () => {
 
-        const cantidad = div.querySelector("input").value;
+        const cantidad =
+          card.querySelector("input").value;
 
-        agregarAlCarrito(producto.nombre, cantidad);
+        agregarAlCarrito(
+          producto.nombre,
+          cantidad
+        );
 
       });
 
@@ -160,13 +207,13 @@ categorias.forEach(categoria => {
 });
 
 
-// =====================
+// ==========================
 // CARRITO
-// =====================
+// ==========================
 
 const carrito = [];
 
-function agregarAlCarrito(nombre, cantidad){
+function agregarAlCarrito(nombre,cantidad){
 
   carrito.push({
     nombre,
@@ -175,46 +222,69 @@ function agregarAlCarrito(nombre, cantidad){
 
   renderCarrito();
 
-  alert("Producto agregado");
+  alert("Producto agregado al carrito");
+
 }
 
 function renderCarrito(){
 
-  const container = document.getElementById("carrito-items");
+  const container =
+    document.getElementById("carrito-items");
 
   container.innerHTML = "";
 
   carrito.forEach(item => {
 
     container.innerHTML += `
-      <p>
+
+      <div class="cart-item">
         ${item.nombre} x ${item.cantidad}
-      </p>
+      </div>
+
     `;
+
   });
 
+  document.getElementById("cart-count")
+    .innerText = carrito.length;
+
 }
+
+
+// ==========================
+// FINALIZAR COMPRA
+// ==========================
 
 function finalizarCompra(){
 
   if(carrito.length === 0){
-    alert("El carrito está vacío");
+
+    alert("Tu carrito está vacío");
+
     return;
   }
 
-  let mensaje = "Hola, quiero comprar:%0A%0A";
+  let mensaje =
+    "Hola, quiero realizar esta compra:%0A%0A";
 
   carrito.forEach(item => {
 
-    mensaje += `• ${item.nombre} x ${item.cantidad}%0A`;
+    mensaje +=
+      `• ${item.nombre} x ${item.cantidad}%0A`;
 
   });
+
+  mensaje +=
+    "%0AGracias.";
 
   alert("Compra confirmada");
 
   window.open(
+
     `https://wa.me/5491111111111?text=${mensaje}`,
+
     "_blank"
+
   );
 
 }
