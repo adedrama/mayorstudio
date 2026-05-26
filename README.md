@@ -45,9 +45,9 @@
 </div>
 
   <div class="puta">
-      <i class="MAYOR STUDIOe"></i>
+      <i class="> MAYOR STUDIO </i>
       
-    </div>
+   </div>
 
     <nav>
       <a href="#empresarial">Empresarial</a>
