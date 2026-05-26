@@ -39,10 +39,9 @@
   <!-- NAVBAR -->
   <header class="navbar">
 
-    <div class="logo">
-      <i class="fa-solid fa-store"></i>
-      Mayor Studioa
-    </div>
+<div class="logo">
+  <img src="assets/logo.png" alt="Logo">
+</div>
 
     <nav>
       <a href="#empresarial">Empresarial</a>
