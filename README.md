@@ -230,7 +230,7 @@
   <!-- ================= WHATSAPP ================= -->
 
   <a class="whatsapp-btn"
-     href="https://wa.me/5491111111111"
+     href="https://wa.me/5491169988927"
      target="_blank">
 
      <i class="fa-brands fa-whatsapp"></i>
@@ -246,8 +246,8 @@
 
       <div>
         <div class="footer-logo">
-          <h2>mayor</h2>
-          <span>studio</span>
+          <h2>mayor
+          studio</h2>
         </div>
 
         <p>
@@ -273,7 +273,7 @@
 
       <div>
         <h4>CONTACTO</h4>
-        <p>+54 11 1234-5678</p>
+        <p>+54 11 6998-8927</p>
         <p>hola@mayorstudio.com</p>
         <p>Buenos Aires, Argentina</p>
       </div>
