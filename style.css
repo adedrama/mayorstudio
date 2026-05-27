@@ -47,6 +47,12 @@ a{
     font-weight:700;
 }
 
+.puta img{
+  height:55px;
+  width:auto;
+  object-fit:contain;
+}
+
 nav{
     display:flex;
     gap:35px;
