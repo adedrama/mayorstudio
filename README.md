@@ -19,6 +19,10 @@
 
   <header class="header">
     <div class="logo">
+
+<div class="puta">
+  <img src="assets/logo.png" alt="Logo">
+</div>
       <h1>mayor</h1>
       <span>studio</span>
     </div>
