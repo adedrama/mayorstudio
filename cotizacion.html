@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cotización Empresa PRO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="cotizacion-body-pro">
+
+  <div class="cotizacion-pro">
+
+    <h1>🧾 Cotización rápida de empresa</h1>
+
+    <!-- UPLOAD -->
+    <div class="panel">
+      <h3>Sube tu logo</h3>
+      <input type="file" id="logoInput" accept="image/*">
+      <small>Se elimina fondo automáticamente (simulado PRO)</small>
+    </div>
+
+    <!-- MOCKUP PRO -->
+    <div class="mockup-pro">
+
+      <img src="https://picsum.photos/400/700?random=88" class="termo-pro">
+
+      <img id="logo" class="logo-pro">
+
+      <!-- CONTROLES -->
+      <div class="controls">
+        <label>Escala</label>
+        <input type="range" id="scale" min="50" max="200" value="100">
+
+        <label>Posición X</label>
+        <input type="range" id="x" min="-100" max="100" value="0">
+
+        <label>Posición Y</label>
+        <input type="range" id="y" min="-100" max="100" value="0">
+      </div>
+
+    </div>
+
+    <!-- CANTIDAD -->
+    <div class="panel">
+      <h3>Cantidad</h3>
+      <input type="number" id="qty" value="1" min="1">
+    </div>
+
+    <!-- PRECIO -->
+    <div class="price-pro">
+      <h2>Total: $<span id="total">0</span></h2>
+      <p>Descuento aplicado por volumen automático</p>
+    </div>
+
+    <button class="btn-primary" onclick="addToCartPro()">
+      Agregar al carrito PRO
+    </button>
+
+  </div>
+
+  <script src="cotizacion.js"></script>
+
+</body>
+</html>
