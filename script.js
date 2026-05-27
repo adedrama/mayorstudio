@@ -1,13 +1,11 @@
-// ==========================
 // HERO SLIDER
-// ==========================
 
 const heroImages = [
 
-  "https://picsum.photos/1600/700?random=1",
-  "https://picsum.photos/1600/700?random=2",
-  "https://picsum.photos/1600/700?random=3",
-  "https://picsum.photos/1600/700?random=4"
+  "https://picsum.photos/700/700?random=1",
+  "https://picsum.photos/700/700?random=2",
+  "https://picsum.photos/700/700?random=3",
+  "https://picsum.photos/700/700?random=4"
 
 ];
 
@@ -18,202 +16,194 @@ setInterval(() => {
   heroIndex++;
 
   if(heroIndex >= heroImages.length){
+
     heroIndex = 0;
+
   }
 
   document.getElementById("heroImage").src =
     heroImages[heroIndex];
 
-}, 4000);
+}, 3500);
 
 
-// ==========================
+
+
 // PRODUCTOS
-// ==========================
 
 const productos = [
 
   {
-    categoria:"empresarial",
-    nombre:"Kit Empresarial Premium",
-    descripcion:
-      "Diseño corporativo moderno para empresas.",
+    nombre:"Vasos y Tazas",
+
+    descripcion:"Personalizadas",
 
     imagenes:[
+
       "https://picsum.photos/500/500?random=11",
       "https://picsum.photos/500/500?random=12",
       "https://picsum.photos/500/500?random=13",
       "https://picsum.photos/500/500?random=14"
+
     ]
   },
 
   {
-    categoria:"souvenirs",
-    nombre:"Souvenir Buenos Aires",
-    descripcion:
-      "Recuerdo premium inspirado en Argentina.",
+    nombre:"Termos y Botellas",
+
+    descripcion:"De acero",
 
     imagenes:[
+
       "https://picsum.photos/500/500?random=21",
       "https://picsum.photos/500/500?random=22",
       "https://picsum.photos/500/500?random=23",
       "https://picsum.photos/500/500?random=24"
+
     ]
   },
 
   {
-    categoria:"randoms",
-    nombre:"Caja Random",
-    descripcion:
-      "Productos variados y exclusivos.",
+    nombre:"Stickers",
+
+    descripcion:"Personalizados",
 
     imagenes:[
+
       "https://picsum.photos/500/500?random=31",
       "https://picsum.photos/500/500?random=32",
       "https://picsum.photos/500/500?random=33",
       "https://picsum.photos/500/500?random=34"
+
     ]
   },
 
   {
-    categoria:"anime",
-    nombre:"Figura Anime",
-    descripcion:
-      "Colección anime edición especial.",
+    nombre:"Anime",
+
+    descripcion:"Productos oficiales y más",
 
     imagenes:[
+
       "https://picsum.photos/500/500?random=41",
       "https://picsum.photos/500/500?random=42",
       "https://picsum.photos/500/500?random=43",
       "https://picsum.photos/500/500?random=44"
+
     ]
   }
 
 ];
 
-const categorias = [
-  "empresarial",
-  "souvenirs",
-  "randoms",
-  "anime"
-];
+const productsGrid =
+  document.getElementById("productsGrid");
 
-const container =
-  document.getElementById("productos-container");
+productos.forEach(producto => {
 
-categorias.forEach(categoria => {
+  const card =
+    document.createElement("div");
 
-  const section = document.createElement("section");
+  card.className =
+    "product-card";
 
-  section.className = "category";
+  card.innerHTML = `
 
-  section.id = categoria;
+    <div class="product-image">
 
-  section.innerHTML = `
-    <h2 class="category-title">
-      ${categoria.toUpperCase()}
-    </h2>
+      <img
+        src="${producto.imagenes[0]}"
+        class="product-slider"
+      >
 
-    <div class="products-grid"></div>
+    </div>
+
+    <div class="product-content">
+
+      <h3>${producto.nombre}</h3>
+
+      <p>${producto.descripcion}</p>
+
+      <div class="product-controls">
+
+        <input
+          type="number"
+          value="1"
+          min="1"
+        >
+
+        <button>
+          Agregar
+        </button>
+
+      </div>
+
+      <button class="view-btn">
+
+        Ver productos
+
+      </button>
+
+    </div>
+
   `;
 
-  container.appendChild(section);
-
-  const grid =
-    section.querySelector(".products-grid");
+  productsGrid.appendChild(card);
 
 
-  productos
-    .filter(p => p.categoria === categoria)
-    .forEach(producto => {
 
-      const card = document.createElement("div");
+  // SLIDER PRODUCTOS
 
-      card.className = "product-card";
+  let index = 0;
 
-      card.innerHTML = `
+  const image =
+    card.querySelector(".product-slider");
 
-        <div class="product-image">
+  setInterval(() => {
 
-          <img
-            src="${producto.imagenes[0]}"
-            class="product-slider"
-          >
+    index++;
 
-        </div>
+    if(index >= producto.imagenes.length){
 
-        <div class="product-content">
+      index = 0;
 
-          <h3>${producto.nombre}</h3>
+    }
 
-          <p>${producto.descripcion}</p>
+    image.src =
+      producto.imagenes[index];
 
-          <div class="product-controls">
-
-            <input
-              type="number"
-              value="1"
-              min="1"
-            >
-
-            <button>
-              Agregar
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-      grid.appendChild(card);
-
-      // SLIDER IMAGENES
-      let index = 0;
-
-      const image =
-        card.querySelector(".product-slider");
-
-      setInterval(() => {
-
-        index++;
-
-        if(index >= producto.imagenes.length){
-          index = 0;
-        }
-
-        image.src =
-          producto.imagenes[index];
-
-      }, 2500);
+  }, 2500);
 
 
-      // AGREGAR AL CARRITO
-      card.querySelector("button")
-      .addEventListener("click", () => {
 
-        const cantidad =
-          card.querySelector("input").value;
 
-        agregarAlCarrito(
-          producto.nombre,
-          cantidad
-        );
+  // AGREGAR CARRITO
 
-      });
+  card.querySelector(".product-controls button")
+  .addEventListener("click", () => {
 
-    });
+    const cantidad =
+      card.querySelector("input").value;
+
+    agregarAlCarrito(
+      producto.nombre,
+      cantidad
+    );
+
+  });
 
 });
 
 
-// ==========================
+
+
 // CARRITO
-// ==========================
 
 const carrito = [];
 
-function agregarAlCarrito(nombre,cantidad){
+function agregarAlCarrito(
+  nombre,
+  cantidad
+){
 
   carrito.push({
     nombre,
@@ -222,14 +212,16 @@ function agregarAlCarrito(nombre,cantidad){
 
   renderCarrito();
 
-  alert("Producto agregado al carrito");
+  alert("Producto agregado");
 
 }
+
+
 
 function renderCarrito(){
 
   const container =
-    document.getElementById("carrito-items");
+    document.getElementById("cartItems");
 
   container.innerHTML = "";
 
@@ -238,7 +230,11 @@ function renderCarrito(){
     container.innerHTML += `
 
       <div class="cart-item">
-        ${item.nombre} x ${item.cantidad}
+
+        ${item.nombre}
+        x
+        ${item.cantidad}
+
       </div>
 
     `;
@@ -246,22 +242,23 @@ function renderCarrito(){
   });
 
   document.getElementById("cart-count")
-    .innerText = carrito.length;
+  .innerText = carrito.length;
 
 }
 
 
-// ==========================
-// FINALIZAR COMPRA
-// ==========================
+
+
+// WHATSAPP
 
 function finalizarCompra(){
 
   if(carrito.length === 0){
 
-    alert("Tu carrito está vacío");
+    alert("El carrito está vacío");
 
     return;
+
   }
 
   let mensaje =
@@ -274,14 +271,9 @@ function finalizarCompra(){
 
   });
 
-  mensaje +=
-    "%0AGracias.";
-
-  alert("Compra confirmada");
-
   window.open(
 
-    `https://wa.me/5491111111111?text=${mensaje}`,
+    `https://wa.me/549111111111?text=${mensaje}`,
 
     "_blank"
 
