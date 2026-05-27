@@ -82,3 +82,96 @@ function addToCartPro(){
 
   alert("Cotización PRO agregada al carrito");
 }
+
+
+// =====================
+// extra
+// =====================
+
+
+logoInput.addEventListener("change", (e) => {
+
+  const file = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (ev) => {
+
+    logo.src = ev.target.result;
+
+    // SIMULACIÓN PRO: efecto "sin fondo"
+    logo.style.filter = "brightness(1.1) contrast(1.2) drop-shadow(0px 10px 10px rgba(0,0,0,0.2))";
+
+  };
+
+  reader.readAsDataURL(file);
+});
+
+
+function addToCartPro(){
+
+  const product = {
+    name: "Cotización Empresa PRO (Termo personalizado)",
+    price: basePrice,
+    quantity: parseInt(qty.value),
+    image: logo.src
+  };
+
+  // obtener carrito global
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];function addToCart(id){
+
+  const product = products.find(p => p.id === id);
+
+  const quantity = parseInt(
+    document.getElementById(`qty-${id}`).value
+  );
+
+  cart.push({
+    ...product,
+    quantity
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCart();
+
+  alert("Producto agregado al carrito ✔");
+}
+  cart.push(product);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert("Agregado al carrito correctamente ✔");
+
+  window.location.href = "index.html"; // vuelve al inicio
+}
+
+function updateCart(){
+
+  const cartItems = document.getElementById("cart-items");
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item) => {
+
+    total += item.price * item.quantity;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.image || item.images?.[0]}">
+        <div>
+          <h4>${item.name}</h4>
+          <p>Cantidad: ${item.quantity}</p>
+          <strong>$${(item.price * item.quantity).toLocaleString()}</strong>
+        </div>
+      </div>
+    `;
+
+  });
+
+  document.getElementById("cart-total").innerText = total.toLocaleString();
+  document.getElementById("cart-count").innerText = cart.length;
+
+}
+
+updateCart();
