@@ -305,3 +305,117 @@ function updateCart(){
 }
 
 updateCart();
+
+import {
+  db,
+  collection,
+  getDocs
+} from "./firebase.js";
+
+// ======================
+// PRODUCTOS DESDE FIREBASE
+// ======================
+
+let products = [];
+
+const productsGrid = document.getElementById("productsGrid");
+
+async function loadProducts() {
+
+  const querySnapshot = await getDocs(collection(db, "productos"));
+
+  products = [];
+
+  querySnapshot.forEach((docSnap) => {
+    products.push({ id: docSnap.id, ...docSnap.data() });
+  });
+
+  renderProducts();
+}
+
+function renderProducts() {
+
+  productsGrid.innerHTML = "";
+
+  products.forEach((product) => {
+
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+
+    card.innerHTML = `
+      <div class="product-gallery">
+        <img src="${product.images[0]}" />
+      </div>
+
+      <div class="product-info">
+
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+
+        <div class="price">
+          $${product.price}
+        </div>
+
+        <input type="number" min="1" value="1" id="qty-${product.id}">
+
+        <button onclick="addToCart('${product.id}')">
+          Agregar al carrito
+        </button>
+
+      </div>
+    `;
+
+    productsGrid.appendChild(card);
+  });
+}
+
+loadProducts();
+
+// ======================
+// CARRITO
+// ======================
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+window.addToCart = function(id) {
+
+  const product = products.find(p => p.id === id);
+
+  const qty = document.getElementById(`qty-${id}`).value;
+
+  cart.push({
+    ...product,
+    quantity: parseInt(qty)
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCart();
+};
+
+function updateCart() {
+
+  const cartItems = document.getElementById("cart-items");
+
+  let total = 0;
+
+  cartItems.innerHTML = "";
+
+  cart.forEach((item, index) => {
+
+    total += item.price * item.quantity;
+
+    cartItems.innerHTML += `
+      <div>
+        <img src="${item.images[0]}" width="50">
+        <p>${item.name}</p>
+        <p>${item.quantity}</p>
+      </div>
+    `;
+  });
+
+  document.getElementById("cart-total").innerText = total;
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+updateCart();
