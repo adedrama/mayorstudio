@@ -419,3 +419,12 @@ function updateCart() {
 }
 
 updateCart();
+
+const params = new URLSearchParams(window.location.search);
+const cat = params.get("cat");
+
+const filtered = products.filter(p => p.category === cat);
+
+const id = new URLSearchParams(window.location.search).get("id");
+
+const product = products.find(p => p.id === id);
