@@ -637,3 +637,23 @@ footer p{
   z-index:9999;
   font-weight:600;
 }
+
+.image-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.image-modal.active{
+  display:flex;
+}
+
+.image-modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+}
